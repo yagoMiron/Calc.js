@@ -1,0 +1,162 @@
+:root{
+    --cor-de-fundo: #275950;
+    --cor-secundaria: #2A8C82;
+    --cor-terciaria: #9BF2EA;
+    --cor-texto: #260101;   
+    --texto-detacado: #07f592;
+}
+.barra{
+    background-color: var(--cor-terciaria);
+    color: var(--cor-de-fundo);
+    font-size: 22px;
+    font-weight: 700;
+    padding: 15px 12px;
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.botaoFechar{
+    background-color: var(--cor-secundaria);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    border: 0px;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.expressao{
+    padding: 20px 12px 5px 12px;
+    width: Calc(100% - 24px);
+    font-size: 18px;
+    text-align: end;
+    background-color: white;
+}
+.input{
+    padding: 5px 12px;
+    width: Calc(100% - 24px);
+    border: 0px;
+    font-size: 22px;
+    text-align: end;
+    display: flex;
+}
+
+.teclado{
+    display: grid;
+    grid-template-areas:
+        "apagar   abrirP   fecharP   mod      pi"
+        "sete     oito     nove      divisao  raiz"
+        "quatro   cinco    seis      multi    potencia"
+        "um       dois     tres      mais     igual"
+        "ponto    zero0    porcento  menos    igual"
+        ;
+    grid-template-rows: 50px 50px 50px 50px 50px;
+    gap: 5px 5px;
+    margin: 10px 10px;
+}
+.botao{
+    border-radius: 2px;
+    border: 0px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--cor-texto);
+    background-color: var(--cor-terciaria);
+}
+.botao:hover{
+    cursor: pointer;
+    background-color: #baf1ec;
+}
+.numero{
+    background-color: var(--texto-detacado);
+}
+.numero:hover{
+    background-color: #45f7ad;
+}
+
+#apagar{
+    grid-area: apagar;
+    font-size: 25px;
+    background-color: rgb(255, 37, 37);
+    padding-bottom: 7px;
+}
+#apagar:hover{
+    background-color: rgb(250, 78, 78);
+}
+#abrirP{
+    grid-area: abrirP;
+}
+#fecharP{
+    grid-area: fecharP;
+}
+#mod{
+    grid-area: mod;
+}
+#pi{
+    grid-area: pi;
+}
+/* Segunda Coluna*/
+#sete{
+    grid-area: sete;
+}
+#oito{
+    grid-area: oito;
+}
+#nove{
+    grid-area: nove;
+}
+#divisao{
+    grid-area: divisao;
+}
+#raiz{
+    grid-area: raiz;
+}
+/* Terceira Coluna*/
+#quatro{
+    grid-area: quatro;
+}
+#cinco{
+    grid-area: cinco;
+}
+#seis{
+    grid-area: seis;
+}
+#multi{
+    grid-area: multi;
+}
+#potencia{
+    grid-area: potencia;
+}
+/* Quarta Coluna*/
+#um{
+    grid-area: um;
+}
+#dois{
+    grid-area: dois;
+}
+#tres{
+    grid-area: tres;
+}
+#mais{
+    grid-area: mais;
+}
+#igual{
+    grid-area: igual;
+    background-color: rgb(47, 255, 92);
+    border-bottom-right-radius: 9px;
+}
+#igual:hover{
+    background-color: rgb(97, 253, 131);
+}
+/* Quinta Coluna*/
+#ponto{
+    grid-area: ponto;
+    border-bottom-left-radius: 9px;
+}
+#zero{
+    grid-area: zero0;
+}
+#porcentagem{
+    grid-area: porcento;
+}
+#menos{
+    grid-area: menos;
+}

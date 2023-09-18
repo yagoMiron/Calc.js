@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc.js</title>
+
+    <link rel="icon" type="image/png" href="img/icone-calculadora.png">
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/teclado.css">
+
+
+    <script src="app/main.js" defer></script>
+    <script src="app/resolveExpressao.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <h1 class="logo">Calc<strong>.js </strong></h1>
+        </a>
+        <nav>
+
+        </nav>
+    </header>
+    <main>
+        <div class="conteiner">
+            <div class="barra">
+                <h3>Calculadora em JavaScript</h3>
+                <div>
+                    <input type="button" class="botaoFechar" value="X">
+                </div>
+            </div>
+            <h3 class="expressao"></h3>
+            <input class="input" type="text" placeholder="0">
+            <div class="teclado">
+                <input type="button" class="botao"id="apagar" value="⌫">
+                <input type="button" class="botao"id="abrirP" value="(">
+                <input type="button" class="botao"id="fecharP" value=")">
+                <input type="button" class="botao"id="mod" value="mod">
+                <input type="button" class="botao"id="pi" value="π">
+
+                <input type="button" class="botao numero"id="sete" value="7">
+                <input type="button" class="botao numero"id="oito" value="8">
+                <input type="button" class="botao numero"id="nove" value="9">
+                <input type="button" class="botao"id="divisao" value="÷">
+                <input type="button" class="botao"id="raiz" value="√">
+
+                <input type="button" class="botao numero"id="quatro" value="4">
+                <input type="button" class="botao numero"id="cinco" value="5">
+                <input type="button" class="botao numero"id="seis" value="6">
+                <input type="button" class="botao"id="multi" value="x">
+                <input type="button" class="botao"id="potencia" value="^">
+
+                <input type="button" class="botao numero"id="um" value="1">
+                <input type="button" class="botao numero"id="dois" value="2">
+                <input type="button" class="botao numero"id="tres" value="3">
+                <input type="button" class="botao"id="mais" value="+">
+                <input type="button" class="botao"id="igual" value="=">
+
+                <input type="button" class="botao"id="ponto" value=".">
+                <input type="button" class="botao numero"id="zero" value="0">
+                <input type="button" class="botao"id="porcentagem" value="%">
+                <input type="button" class="botao"id="menos" value="-">
+
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <a href="https://github.com/yagoMiron">
+            &copy; Desenvolvido por Yago Miron
+        </a>
+    </footer>
+</body>
+
+</html>
