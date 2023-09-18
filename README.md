@@ -2,7 +2,7 @@
 
 **Calculadora simples feita em JavaScript**
 
-<img src="img/pagina-index.png" alt="Pagina Inicial" style="height: 500px;"/>
+<img src="img/pagina-index.png" alt="Pagina Inicial" style="height: 400px; width: 700px;"/>
 
 Nela o usuário pode inserir uma expressão tanto clicando no input e escrevendo pelo teclado quanto usando os botões da calculadora 
 
