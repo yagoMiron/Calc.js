@@ -15,7 +15,6 @@ for (let i = 0; i < botao.length; i++) {
         } else if (valor == 'pi') {
             input.value += '3.14159265';
         } else {
-            console.log(botao[i].defaultValue)
             input.value += botao[i].defaultValue;
         }
     });
