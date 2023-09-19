@@ -1,59 +1,42 @@
-/*
-const prompt = require('prompt-sync')();
-
-const expressaoMatematica = prompt("Escreva uma expressão matemática ");
-console.time('meu timer');
-const resultado = resolveExpressao(expressaoMatematica);
-console.log("O resultado é: " + resultado);
-console.timeEnd('meu timer');
-*/
-
-
 function resolveExpressao(expressao) {
-    // 9+9-9+9*9-9*9+9%+9/9*9/9+9-9
-    console.log(expressao)
-    let arrayExpressao = expressao.split('')
-    let indexAbreParenteses = arrayExpressao.findIndex((element) => element == '(')
-    if (indexAbreParenteses != -1) {
-        expressao = resolveParenteses(expressao);
-        expressao = expressao.join('');
-    }
-    arrayExpressao = expressao.split("-");
-    // ["9+9","9+9*9","9*9+9%+9/9*9/9+9","9"]
+    let stringExpressao
+    let arrayExpressao
+
+    stringExpressao = resolveParenteses(expressao);
+
+    //replaces {
+    arrayExpressao = stringExpressao.split(" ");
+    stringExpressao = arrayExpressao.join("")
+
+    arrayExpressao = stringExpressao.split("--");
+    stringExpressao = arrayExpressao.join("+")
+
+    arrayExpressao = stringExpressao.split("-");
     stringExpressao = arrayExpressao.join("+-")
-    // "9+9+-9+9*9+-9*9+9%+9/9*9/9+9+-9"
+
+    arrayExpressao = stringExpressao.split("++");
+    stringExpressao = arrayExpressao.join("+")
+
     arrayExpressao = stringExpressao.split("%");
-
     stringExpressao = arrayExpressao.join("÷100");
-    // "9+9+-9+9*9+-9*9+9/100+9/9*9/9+9+-9"
-    arrayExpressao = stringExpressao.split("mod");
-
-    stringExpressao = arrayExpressao.join("%")
+    // }
 
     arrayExpressao = stringExpressao.split("+");
-    // ["9","9","-9","9*9","-9*9","9/9*9/9","9","-9"]
     arrayExpressao = arrayExpressao.map((element) => {
         if (Number(element)) {
             return element;
         } else {
-            let arrayElement = element.split("%");
-            // ["9","9","-9",["9","9"],["-9","9"],["9/9","9/9"],"9","-9"]
-            // "9/9*9/9" => ["9/9","9/9"]
+            let arrayElement = element.split("mod");
             arrayElement = arrayElement.map((element) => {
                 if (Number(element)) {
                     return element;
                 } else {
                     let arrayElement = element.split("x");
-                    // ["9","9","-9",["9","9"],["-9","9"],["9/9","9/9"],"9","-9"]
-                    // "9/9*9/9" => ["9/9","9/9"]
                     arrayElement = arrayElement.map((element) => {
                         if (Number(element)) {
                             return element;
                         } else {
                             let arrayElement = element.split("÷");
-                            // ["9","9","-9",["9","9"],["-9","9"],[["9","9"],["9","9"]],"9","-9"]
-                            // "9/9" => ["9","9"]
-
                             arrayElement = arrayElement.map((element) => {
                                 if (Number(element)) {
                                     return element;
@@ -75,24 +58,22 @@ function resolveExpressao(expressao) {
                             })
 
                             const result = dividirElementos(arrayElement);
-                            // ["9","9"] => "1"
                             return result;
                         }
                     });
-                    // ["9","9","-9",["9","9"],["-9","9"],["1","1"],"9","-9"]
                     const resultMultiplicacao = multiplicaElementos(arrayElement);
                     return resultMultiplicacao;
                 }
             });
-            // ["9","9","-9",["9","9"],["-9","9"],["1","1"],"9","-9"]
             const resultMultiplicacao = retornaResto(arrayElement);
             return resultMultiplicacao;
         }
     });
-    // ["9","9","-9","81","-81","1","9","-9"]
     const resultado = somarElementos(arrayExpressao);
-    // 10
+
     let result = (Math.floor(resultado * 100000000000000)) / 100000000000000
+    // corrigir erros de conversão de numeros binários
+
     return result;
 }
 function multiplicaElementos(arrayMult) {
@@ -132,15 +113,40 @@ function retornaRaizes(arrayRaiz) {
     });
     return result
 }
-function resolveParenteses(expressao) {
-    let arrayExpressao = expressao.split('')
-    let indexAbreParenteses = arrayExpressao.findIndex((element) => element == '(')
-    let indexFechaParenteses = arrayExpressao.findIndex((element) => element == ')')
-    let expressaoInterna = arrayExpressao.slice(indexAbreParenteses + 1, indexFechaParenteses)
-    let stringExpressao = expressaoInterna.join('');
-    const resultExpressaoInterna = resolveExpressao(stringExpressao)
-    arrayExpressao.splice(indexAbreParenteses, (indexFechaParenteses - indexAbreParenteses + 1), resultExpressaoInterna)
-    return arrayExpressao
+function resolveParenteses(expressaoString) {
+    let direcao;
+    let arrayExpressao = expressaoString.split('');
+    const indexParenteses = arrayExpressao.findIndex((element) => {
+        if (element == '(') {
+            direcao = 'direita'
+            return true
+        } else if (element == ')') {
+            direcao = 'esquerda'
+            return true;
+        } else {
+            return false;
+        }
+    })
+    if (direcao == 'direita') {
+        const arrayCortado = arrayExpressao.slice(indexParenteses + 1);
+        let stringExpressao = arrayCortado.join('');
+        const resultExpressaoInterna = resolveParenteses(stringExpressao);
+        arrayExpressao.splice(indexParenteses, arrayExpressao.length, resultExpressaoInterna);
+        stringExpressao = arrayExpressao.join('');
+        return stringExpressao;
+
+    } else if (direcao == 'esquerda') {
+        let arrayCortado = arrayExpressao.slice(0, indexParenteses);
+        let stringExpressao = arrayCortado.join('');
+        const resultExpressaoInterna = resolveExpressao(stringExpressao);
+        arrayExpressao.splice(0, (indexParenteses + 1), resultExpressaoInterna);
+        stringExpressao = arrayExpressao.join('');
+        stringExpressao = resolveParenteses(stringExpressao);
+        return stringExpressao;
+        
+    } else {
+        return expressaoString
+    }
 }
 function retornaResto(arrayDiv) {
     //retorna o resto da dividão de todos os elementos de um array
