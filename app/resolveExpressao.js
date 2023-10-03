@@ -4,24 +4,12 @@ function resolveExpressao(expressao) {
 
     stringExpressao = resolveParenteses(expressao);
 
-    //replaces {
-    //arrayExpressao = stringExpressao.split(" ");
-    //stringExpressao = arrayExpressao.join("")
     stringExpressao = stringExpressao.replace(/ /g, "");
-    //arrayExpressao = stringExpressao.split("--");
-    //stringExpressao = arrayExpressao.join("+")
     stringExpressao = stringExpressao.replace(/--/g, "+");
-    //arrayExpressao = stringExpressao.split("-");
-    //stringExpressao = arrayExpressao.join("+-")
     stringExpressao = stringExpressao.replace(/-/g, "+-");
-    //arrayExpressao = stringExpressao.split("++");
-    //stringExpressao = arrayExpressao.join("+")
-    stringExpressao = stringExpressao.replace(/++/g, "+");
-    //arrayExpressao = stringExpressao.split("%");
-    //stringExpressao = arrayExpressao.join("÷100");
+    stringExpressao = stringExpressao.replace(/\+\+/g, "+");
     stringExpressao = stringExpressao.replace(/%/g, "÷100");
     stringExpressao = stringExpressao.replace(/x/g, "*");
-    // }
 
     arrayExpressao = stringExpressao.split("+");
     arrayExpressao = arrayExpressao.map((element) => {
