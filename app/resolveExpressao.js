@@ -5,20 +5,22 @@ function resolveExpressao(expressao) {
     stringExpressao = resolveParenteses(expressao);
 
     //replaces {
-    arrayExpressao = stringExpressao.split(" ");
-    stringExpressao = arrayExpressao.join("")
-
-    arrayExpressao = stringExpressao.split("--");
-    stringExpressao = arrayExpressao.join("+")
-
-    arrayExpressao = stringExpressao.split("-");
-    stringExpressao = arrayExpressao.join("+-")
-
-    arrayExpressao = stringExpressao.split("++");
-    stringExpressao = arrayExpressao.join("+")
-
-    arrayExpressao = stringExpressao.split("%");
-    stringExpressao = arrayExpressao.join("÷100");
+    //arrayExpressao = stringExpressao.split(" ");
+    //stringExpressao = arrayExpressao.join("")
+    stringExpressao = stringExpressao.replace(/ /g, "");
+    //arrayExpressao = stringExpressao.split("--");
+    //stringExpressao = arrayExpressao.join("+")
+    stringExpressao = stringExpressao.replace(/--/g, "+");
+    //arrayExpressao = stringExpressao.split("-");
+    //stringExpressao = arrayExpressao.join("+-")
+    stringExpressao = stringExpressao.replace(/-/g, "+-");
+    //arrayExpressao = stringExpressao.split("++");
+    //stringExpressao = arrayExpressao.join("+")
+    stringExpressao = stringExpressao.replace(/++/g, "+");
+    //arrayExpressao = stringExpressao.split("%");
+    //stringExpressao = arrayExpressao.join("÷100");
+    stringExpressao = stringExpressao.replace(/%/g, "÷100");
+    stringExpressao = stringExpressao.replace(/x/g, "*");
     // }
 
     arrayExpressao = stringExpressao.split("+");
@@ -31,7 +33,7 @@ function resolveExpressao(expressao) {
                 if (Number(element)) {
                     return element;
                 } else {
-                    let arrayElement = element.split("x");
+                    let arrayElement = element.split("*");
                     arrayElement = arrayElement.map((element) => {
                         if (Number(element)) {
                             return element;
